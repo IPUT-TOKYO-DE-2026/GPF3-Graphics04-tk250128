@@ -40,14 +40,30 @@ void FrameBufferEmulator::initUser()
 	centerY = height / 2;
 	radius = 100; // 初期の半径
 }
-
-// 描画処理（毎フレーム呼び出される）
-void FrameBufferEmulator::drawUser(unsigned char* buff, int mode, int keyLevel, int keyTrigger)
+void FrameBufferEmulator::drawUser(unsigned char* buff, int mode, int keyLevel, int keyTrigger)// 描画処理（毎フレーム呼び出される）
 {
-	unsigned char color[3] = { 10, 200, 0 }; // B, G, R
-
-	if (keyTrigger == SDLK_UP) { // 上矢印キーが押されたら
+	unsigned char  color[3] = { 10, 255, 0 }; // B, G, R
+	if (keyTrigger == SDLK_UP)
+	{ // 上矢印キーが押されたら
 		radius++;  // 半径を大きくする
 	}
 	drawFilledCircle(buff, width, height, radius, centerX, centerY, color); // 円を描画する
+
+	if (keyTrigger == SDLK_DOWN)
+	{ // 下矢印キーが押されたら
+		radius--;  // 半径を小さくする
+	}
+	drawFilledCircle(buff, width, height, radius, centerX, centerY, color);
+
+	if (keyLevel == SDLK_LEFT)
+	{
+		color[1] = 50;
+	}
+	drawFilledCircle(buff, width, height, radius, centerX, centerY, color);
+
+	if (keyLevel == SDLK_RIGHT)
+	{
+		color[2] = 200;
+	}
+	drawFilledCircle(buff, width, height, radius, centerX, centerY, color);
 }
