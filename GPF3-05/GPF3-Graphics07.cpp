@@ -71,3 +71,4 @@ void FrameBufferEmulator::drawUser(unsigned char* buff, int mode, int keyLevel, 
 	}
 	drawFilledCircle(buff, width, height, radius, centerX, centerY, color);
 }
+//コミット用
